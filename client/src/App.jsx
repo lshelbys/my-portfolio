@@ -52,11 +52,11 @@ function AppLayout() {
   );
 }
 
-const Router = import.meta.env.BASE_URL === "/my-portfolio/" ? HashRouter : BrowserRouter;
+const Router = import.meta.env.BASE_URL === "./" ? HashRouter : BrowserRouter;
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL === "/my-portfolio/" ? undefined : import.meta.env.BASE_URL}>
+    <Router basename={import.meta.env.BASE_URL === "./" ? undefined : import.meta.env.BASE_URL}>
       <AppLayout />
     </Router>
   );

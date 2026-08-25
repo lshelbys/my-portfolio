@@ -1,9 +1,8 @@
-# AUK and GitHub publishing checklist
+# GitHub Pages deployment fix checklist
 
-- [ ] Audit all current identity, education, email, CV, and social references in the portfolio.
-- [ ] Inspect the connected `lshelbys/my-portfolio` repository and its current branch/state.
-- [ ] Replace the education details with American University of Kuwait (AUK).
-- [ ] Replace every placeholder email with `info@shelbys.dev` and update related contact links.
-- [ ] Run type checks and a production build; verify the updated homepage and contact route.
-- [ ] Copy/push the completed frontend to `lshelbys/my-portfolio` without including generated build artifacts or secrets.
-- [ ] Report the repository result and exact GitHub Pages setup steps.
+- [ ] Inspect the repository's Pages workflow, package scripts, and current GitHub Actions runs.
+- [ ] Confirm why GitHub Pages is serving README content instead of the built site.
+- [ ] Correct the workflow, Pages artifact, and repository build configuration.
+- [ ] Verify the production output contains the portfolio entrypoint and expected assets.
+- [ ] Push the correction to `lshelbys/my-portfolio` and confirm the workflow starts successfully.
+- [ ] Report any remaining one-time Pages setting or propagation delay to the user.
