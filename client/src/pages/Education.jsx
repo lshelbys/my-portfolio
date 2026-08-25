@@ -9,10 +9,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-const collegeImg = "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/education/college_img.jpg";
-const schoolImg = "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/education/school_img.jpg";
+const collegeImg = "./assets/media/auk-campus.jpeg";
 const bTechPdf = "#contact";
-const hsMarkSheetPdf = "#contact";
 
 const educationData = [
   {
@@ -35,25 +33,6 @@ const educationData = [
     ],
     description:
       "At the American University of Kuwait, I am building a foundation in systems thinking, software engineering, analysis, and practical problem solving. I use hands-on projects to connect classroom concepts with things that can be tested.",
-  },
-  {
-    id: 2,
-    school: "Secondary Education",
-    location: "Kuwait",
-    duration: "Completed",
-    degree: "Science & Mathematics Foundations",
-    grade: "Completed",
-    image: schoolImg,
-    resultUrl: hsMarkSheetPdf,
-    subjects: [
-      "Mathematics",
-      "Physics",
-      "Computing",
-      "Problem Solving",
-      "Technical Writing",
-    ],
-    description:
-      "An early foundation in mathematics, science, and computing continues to shape how I approach complex problems and communicate technical ideas.",
   },
 ];
 

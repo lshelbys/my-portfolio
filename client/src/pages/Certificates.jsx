@@ -1,3 +1,4 @@
+// Reference-style certificate grid; content is limited to the user's current learning status.
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { motion } from "framer-motion";
 import { Award, Calendar, ExternalLink } from "lucide-react";
@@ -5,57 +6,13 @@ import { Award, Calendar, ExternalLink } from "lucide-react";
 const certificates = [
   {
     id: 1,
-    title: "Systems Thinking Foundations",
-    issuer: "Independent study",
-    date: "Current learning",
+    title: "Amazon Web Services (AWS) Certification",
+    issuer: "Amazon Web Services",
+    date: "In progress",
     link: "#contact",
-    description: "Working through systems thinking concepts, boundaries, feedback loops, and the language used to describe complex systems.",
-    skills: ["Systems Thinking", "Modelling", "Feedback Loops"],
-  },
-  {
-    id: 2,
-    title: "Software Engineering Practice",
-    issuer: "Coursework",
-    date: "Current learning",
-    link: "#contact",
-    description: "Building practical fluency in structured implementation, version control, testing habits, and maintainable interfaces.",
-    skills: ["Software Engineering", "Testing", "Git"],
-  },
-  {
-    id: 3,
-    title: "Requirements & Traceability",
-    issuer: "Systems Engineering study",
-    date: "Current learning",
-    link: "#contact",
-    description: "Learning to turn stakeholder needs into clear requirements and traceable decisions that can be reviewed and validated.",
-    skills: ["Requirements", "Traceability", "Analysis"],
-  },
-  {
-    id: 4,
-    title: "Infrastructure Fundamentals",
-    issuer: "Independent lab work",
-    date: "Current learning",
-    link: "#contact",
-    description: "Exploring local environments, networks, services, and the operational details that help software behave reliably.",
-    skills: ["Linux", "Networks", "Infrastructure"],
-  },
-  {
-    id: 5,
-    title: "Automation & Scripting",
-    issuer: "Practical projects",
-    date: "Current learning",
-    link: "#contact",
-    description: "Using small scripts and repeatable workflows to reduce manual steps and make experiments easier to reproduce.",
-    skills: ["Python", "Bash", "Automation"],
-  },
-  {
-    id: 6,
-    title: "Technical Communication",
-    issuer: "Ongoing practice",
-    date: "Current learning",
-    link: "#contact",
-    description: "Practising concise technical writing, diagrams, and explanations that make systems easier for other people to understand.",
-    skills: ["Documentation", "Diagrams", "Communication"],
+    description:
+      "Currently preparing for an Amazon AWS certification while building practical foundations in cloud services, infrastructure, and reliable system operations.",
+    skills: ["AWS", "Cloud Fundamentals", "Infrastructure"],
   },
 ];
 
@@ -63,7 +20,12 @@ const Certificates = () => {
   return (
     <div className="min-h-screen pt-20 px-4 max-w-6xl mx-auto pb-20">
       <ScrollAnimation>
-        <motion.div className="flex items-center gap-3 mb-12" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+        <motion.div
+          className="flex items-center gap-3 mb-12"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <Award className="w-8 h-8" />
           <h2 className="text-4xl font-bold gradient-text">Certificates</h2>
         </motion.div>
@@ -85,11 +47,16 @@ const Certificates = () => {
                 <p className="text-gray-300 line-clamp-2">{cert.description}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {cert.skills.map((skill) => (
-                    <span key={skill} className="px-2 py-1 text-sm bg-white/10 rounded-full">{skill}</span>
+                    <span key={skill} className="px-2 py-1 text-sm bg-white/10 rounded-full">
+                      {skill}
+                    </span>
                   ))}
                 </div>
                 <div className="mt-auto pt-4">
-                  <a href={cert.link} className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 group-hover:translate-x-2 transition-transform">
+                  <a
+                    href={cert.link}
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 group-hover:translate-x-2 transition-transform"
+                  >
                     View Learning Notes
                     <ExternalLink className="w-4 h-4" />
                   </a>
