@@ -9,7 +9,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-const collegeImg = "./assets/media/auk-campus.jpeg";
+const collegeImg = "./media/auk-campus.jpeg";
 const bTechPdf = "#contact";
 
 const educationData = [
