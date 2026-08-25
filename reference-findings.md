@@ -1,0 +1,9 @@
+# Live reference inspection
+
+The actual reference at `https://niladri1.vercel.app/` is substantially different from the prior implementation. It is a minimalist, centered, black portfolio with a persistent top navigation bar. The header contains a small code-style monogram plus the name "Niladri", a compact search field with a `Ctrl+K` hint, and inline links for Home, About, Education, Experience, Skills, Projects, Certificates, and Contact. The page uses very dark black surfaces with a faint blurred/spotlit background treatment rather than a telemetry grid or framed editorial system layout.
+
+The hero is centered vertically and horizontally. It presents a large white name, a bold subheading reading "I design & code for web", a short centered gray paragraph, two rounded buttons (`Download CV` and `About Me`), a pill-like email row, and three equal-width bordered metric cards for GitHub Projects, LinkedIn Followers, and WhatsApp. The cards use simple line icons and muted gray labels.
+
+The lower part of the inspected page shows a spacious black gap before a compact footer. The footer is a four-column-ish layout with the logo/name lockup, Contact details, Quick Links grouped by the same page sections, and Social icon links. It ends with a thin divider, copyright text on the left, and a small `Niladri's Portfolio` label on the right.
+
+The key fidelity changes are therefore: centered hero, black background, blurred spotlight texture, compact full-width header, visible search control, rounded white/gray buttons, email pill, three stat cards, much more whitespace, and a footer-first information architecture. The repository's route labels suggest additional page sections, but the live root page currently visually emphasizes the hero and footer; the Systems Engineering version should preserve that visual shell while adapting the content and metrics honestly.
