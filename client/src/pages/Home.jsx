@@ -39,15 +39,6 @@ const Home = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 mt-7 sm:mt-0 md:mt-3 lg:mt-5">
       <div className="text-center relative z-10 max-w-4xl mx-auto">
-        <motion.h1
-          className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 relative tracking-tighter"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          shelbys
-        </motion.h1>
-
         <motion.h2
           className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 relative tracking-tighter"
           initial={{ opacity: 0, y: 20 }}
@@ -128,7 +119,7 @@ const Home = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.a
-              href="/projects"
+              href="https://github.com/lshelbys?tab=repositories"
             className="flex flex-col items-center group w-full"
             whileHover={{ y: -2 }}
             aria-label="Visit GitHub profile"
