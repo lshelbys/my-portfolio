@@ -1,4 +1,4 @@
-import{c as r,j as e,A as l,m as s}from"./index-Bqv1XwiH.js";import{S as n}from"./ScrollAnimation-D_DSxJ7Q.js";import{B as u}from"./briefcase-DFS4Zl6u.js";import{M as o}from"./map-pin-DuOr4M1l.js";import{E as a}from"./external-link-BTVgQCJl.js";/**
+import{c as r,j as e,A as l,m as s}from"./index-DXWa3XSP.js";import{S as n}from"./ScrollAnimation-BQXP-EN_.js";import{B as u}from"./briefcase-DZn9XASD.js";import{M as o}from"./map-pin-Bg540ynx.js";import{E as a}from"./external-link-DtNU8lKt.js";/**
  * @license lucide-react v0.453.0 - ISC
  *
  * This source code is licensed under the ISC license.

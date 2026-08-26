@@ -1,4 +1,4 @@
-import{c as n,j as e,m as t,L as i}from"./index-Bqv1XwiH.js";import{S as a}from"./ScrollAnimation-D_DSxJ7Q.js";/**
+import{c as n,j as e,m as t,L as i}from"./index-DXWa3XSP.js";import{S as a}from"./ScrollAnimation-BQXP-EN_.js";/**
  * @license lucide-react v0.453.0 - ISC
  *
  * This source code is licensed under the ISC license.

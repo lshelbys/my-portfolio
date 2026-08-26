@@ -122,7 +122,7 @@ const SearchDialog = ({ iconOnly = false }) => {
               <input
                 type="text"
                 placeholder="Search pages..."
-                className="w-full px-4 py-4 text-white bg-transparent border-0 focus:outline-none focus:ring-0"
+                className="search-dialog-input w-full px-4 py-4 text-white bg-transparent border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 autoFocus

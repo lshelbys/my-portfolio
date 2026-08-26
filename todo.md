@@ -1,9 +1,7 @@
-# Education and Certificates update checklist
+# Search overlay outline fix checklist
 
-- [x] Inspect the current Education and Certificates routes.
-- [x] Keep only the AUK education entry and use the provided campus image.
-- [x] Remove all existing certificate entries.
-- [x] Add one Amazon AWS certification entry with status In progress.
-- [x] Run type checks and production build.
-- [x] Verify both routes on desktop and mobile.
-- [x] Push the updated source and Pages artifact to `lshelbys/my-portfolio`.
+- [ ] Inspect the search dialog input component and global focus styles.
+- [ ] Remove the visible rectangular outline from the search input.
+- [ ] Preserve a subtle keyboard-only focus indication where appropriate.
+- [ ] Verify the search overlay on desktop and mobile and run the production build.
+- [ ] Push the update to `lshelbys/my-portfolio` and save a checkpoint.

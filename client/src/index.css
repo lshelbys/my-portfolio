@@ -140,6 +140,12 @@ body {
   mix-blend-mode: screen;
 }
 
+.search-dialog-input:focus,
+.search-dialog-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
