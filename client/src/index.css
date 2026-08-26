@@ -26,8 +26,54 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  background: #000;
+  background:
+    radial-gradient(900px 520px at 50% -8%, rgba(86, 104, 142, 0.2), transparent 68%),
+    radial-gradient(620px 420px at 8% 34%, rgba(24, 56, 86, 0.14), transparent 72%),
+    radial-gradient(680px 520px at 92% 72%, rgba(74, 45, 94, 0.11), transparent 72%),
+    #000;
   color: #f3f4f6;
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+
+#root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at 50% 8%, black 0%, rgba(0, 0, 0, 0.9) 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 8%, black 0%, rgba(0, 0, 0, 0.9) 35%, transparent 78%);
+}
+
+#root::after {
+  content: "";
+  position: fixed;
+  width: 42rem;
+  height: 42rem;
+  top: -18rem;
+  left: 50%;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(188, 204, 255, 0.11), rgba(70, 110, 160, 0.045) 34%, transparent 70%);
+  filter: blur(18px);
+  transform: translateX(-50%);
+  animation: ambient-drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-drift {
+  from { opacity: 0.45; transform: translateX(-54%) translateY(-1rem) scale(0.96); }
+  to { opacity: 0.9; transform: translateX(-46%) translateY(2rem) scale(1.04); }
 }
 
 .gradient-text {
@@ -83,13 +129,15 @@ body {
 }
 
 .light-rays-container {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: screen;
 }
 
 button:focus-visible,
