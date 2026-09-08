@@ -69,7 +69,7 @@ const skills = [
       { name: "Data Models", icon: <MongoDBLogo /> },
       { name: "SQL Basics", icon: <Database className="w-4 h-4" /> },
       { name: "Cloud Concepts", icon: <Cloud className="w-4 h-4" /> },
-      { name: "APIs", icon: <PostmanLogo /> },
+      { name: "HTTP / JSON", icon: <PostmanLogo /> },
     ],
   },
   {
@@ -118,11 +118,12 @@ const Skills = () => {
   return (
     <div className="min-h-screen pt-20 px-4 max-w-6xl mx-auto pb-20">
       <ScrollAnimation>
+        <p className="sys-label mb-3">SYS / 05</p>
         <h2 className="text-4xl font-bold mb-4 gradient-text">Technical Skills</h2>
-      </ScrollAnimation>
-
-      <ScrollAnimation>
-        <p className="text-gray-400 mb-12 max-w-2xl">A practical overview of the systems, software, infrastructure, and communication skills I am building through study and projects.</p>
+        <p className="text-gray-400 mb-12 max-w-2xl">
+          A practical overview of the systems, software, infrastructure, and
+          communication skills I am building through study and projects.
+        </p>
       </ScrollAnimation>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -1,19 +1,20 @@
+import { GITHUB_URL, SITE_NAME } from "./site";
+
 export const CONTACT_INFO = {
-  name: "shelbys",
+  name: SITE_NAME,
   email: "info@shelbys.dev",
   phone: "Available for collaboration",
   phoneRaw: "",
   whatsapp: "",
   location: "Kuwait",
   timezone: "UTC+3",
-  github: "/projects",
-  linkedin: "/about",
+  github: GITHUB_URL,
+  linkedin: "",
   twitter: "",
-  linkedInFollowers: "Systems",
 };
 
 export const OFFICE_HOURS = {
-  weekday: "Available for thoughtful collaboration",
-  saturday: "Limited availability",
-  sunday: "Offline / learning",
+  weekday: "Weekdays — usually reachable for thoughtful collaboration",
+  saturday: "Saturday — limited availability",
+  sunday: "Sunday — offline / learning",
 };

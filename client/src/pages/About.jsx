@@ -1,25 +1,27 @@
-const cvPdf = "#contact";
-const profileImg = "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/profile/profile.jpg";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
+import { AVATAR_URL } from "@/config/site";
 import { motion } from "framer-motion";
-import { Briefcase, Code2, Globe, GraduationCap } from "lucide-react";
+import { Code2, FolderKanban, Globe, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const achievements = [
+const focusAreas = [
   {
     icon: <Code2 className="w-6 h-6" />,
-    title: "Systems Projects",
-    description: "Practical builds that connect requirements to working software",
+    title: "Shipped tools",
+    description:
+      "Browser-first products like DocuCraft, plus inventory, maps, and game prototypes that people can actually use.",
   },
   {
-    icon: <Briefcase className="w-6 h-6" />,
-    title: "Build Mindset",
-    description: "Curious, methodical, and comfortable learning by making",
+    icon: <FolderKanban className="w-6 h-6" />,
+    title: "Build mindset",
+    description:
+      "Curious, methodical, and comfortable learning by making — from requirements to a working interface.",
   },
   {
     icon: <GraduationCap className="w-6 h-6" />,
     title: "Systems Engineering",
-    description: "Academic focus on reliable systems and structured problem solving",
+    description:
+      "Academic focus on reliable systems, interfaces, trade-offs, and structured problem solving at AUK.",
   },
 ];
 
@@ -34,14 +36,15 @@ const interests = [
 
 const quickFacts = [
   "Based in Kuwait",
-  "Studying Systems Engineering",
-  "Focused on reliable, understandable builds",
+  "Systems Engineering student at AUK",
+  "Building privacy-aware tools and practical prototypes",
 ];
 
 const About = () => {
   return (
     <div className="min-h-screen pt-20 px-4 max-w-4xl mx-auto pb-20">
       <ScrollAnimation>
+        <p className="sys-label mb-3">SYS / 02</p>
         <motion.h2 className="text-4xl font-bold mb-8 gradient-text">
           About Me
         </motion.h2>
@@ -49,10 +52,10 @@ const About = () => {
 
       <div className="grid md:grid-cols-2 gap-8">
         <ScrollAnimation>
-          <div className="aspect-square overflow-hidden rounded-2xl">
+          <div className="aspect-square overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
             <img
-              src={profileImg}
-              alt="Systems Engineering student profile"
+              src={AVATAR_URL}
+              alt="Portrait of shelbys"
               width={600}
               height={600}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
@@ -63,13 +66,20 @@ const About = () => {
         <ScrollAnimation className="space-y-6">
           <div className="space-y-4">
             <p className="text-gray-300 leading-relaxed">
-              Hi! I&apos;m a Systems Engineering student who enjoys understanding how parts fit together, then turning that understanding into useful software and practical prototypes.
+              Hi — I&apos;m shelbys, a Systems Engineering student at the
+              American University of Kuwait. I like understanding how parts fit
+              together, then turning that into software people can actually use.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              My studies give me a structured way to think about requirements, trade-offs, interfaces, and failure modes. I use projects to turn those ideas into things that can be tested and improved.
+              Recent work includes DocuCraft, a privacy-first PDF toolkit that
+              runs entirely in the browser, plus inventory, mapping, and
+              chess prototypes. I care about clear interfaces, honest
+              constraints, and builds that stay understandable.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              I am currently building my working set across software engineering, automation, infrastructure fundamentals, and technical communication — always with an eye toward clarity and reliability.
+              I&apos;m currently deepening software engineering, automation,
+              infrastructure fundamentals, and technical communication — always
+              with an eye toward reliability.
             </p>
           </div>
 
@@ -83,27 +93,25 @@ const About = () => {
                   key={fact}
                   className="flex items-center space-x-2 text-gray-300"
                 >
-                  <span className="w-2 h-2 bg-white rounded-full" />
+                  <span className="w-2 h-2 bg-[var(--signal)] rounded-full" />
                   <span>{fact}</span>
                 </motion.li>
               ))}
             </ul>
           </div>
 
-          <div className="flex justify-start space-x-4">
-            <a
-              href={cvPdf}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="flex justify-start flex-wrap gap-3">
+            <Link
+              to="/projects"
               className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-colors"
             >
-              Download CV
-            </a>
+              View Projects
+            </Link>
             <Link
-              to="/skills"
+              to="/contact"
               className="px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-colors"
             >
-              My Skills
+              Get in Touch
             </Link>
           </div>
         </ScrollAnimation>
@@ -112,19 +120,17 @@ const About = () => {
       <ScrollAnimation>
         <div className="mt-16">
           <h3 className="text-2xl font-semibold mb-8 gradient-text">
-            Achievements
+            How I work
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
-            {achievements.map((achievement) => (
+            {focusAreas.map((area) => (
               <div
-                key={achievement.title}
-                className="bg-white/5 p-6 rounded-xl backdrop-blur-sm"
+                key={area.title}
+                className="bg-white/5 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:border-white/15 transition-colors"
               >
-                <div className="text-white mb-4">{achievement.icon}</div>
-                <h4 className="text-xl font-semibold mb-2">
-                  {achievement.title}
-                </h4>
-                <p className="text-gray-400">{achievement.description}</p>
+                <div className="text-white mb-4">{area.icon}</div>
+                <h4 className="text-xl font-semibold mb-2">{area.title}</h4>
+                <p className="text-gray-400">{area.description}</p>
               </div>
             ))}
           </div>
@@ -140,7 +146,7 @@ const About = () => {
             {interests.map((interest) => (
               <div
                 key={interest}
-                className="bg-white/5 p-4 rounded-xl backdrop-blur-sm flex items-center gap-3"
+                className="bg-white/5 p-4 rounded-xl backdrop-blur-sm flex items-center gap-3 border border-white/5"
               >
                 <Globe className="w-5 h-5 text-gray-400" />
                 <span className="text-gray-300">{interest}</span>

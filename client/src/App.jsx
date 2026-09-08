@@ -25,11 +25,14 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <ErrorBoundary fallback={null}>
         <Background3D />
       </ErrorBoundary>
       <Navbar />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         <ErrorBoundary>
           <Suspense fallback={<Loading />}>
             <Routes>

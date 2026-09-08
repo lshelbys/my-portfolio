@@ -21,15 +21,33 @@ const SearchDialog = ({ iconOnly = false }) => {
   }, []);
 
   useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
+
+  const closeSearch = () => {
+    setIsOpen(false);
+    setSearchQuery("");
+    setSelectedIndex(0);
+  };
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        if (iconOnly) return;
         e.preventDefault();
         setIsOpen((prev) => !prev);
       }
 
       if (!isOpen) return;
 
-      if (e.key === "Escape") setIsOpen(false);
+      if (e.key === "Escape") closeSearch();
+
+      if (!results.length) return;
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -42,10 +60,10 @@ const SearchDialog = ({ iconOnly = false }) => {
         );
       }
 
-      if (e.key === "Enter" && results.length > 0) {
+      if (e.key === "Enter") {
         e.preventDefault();
         navigate(results[selectedIndex].path);
-        setIsOpen(false);
+        closeSearch();
       }
     };
 
@@ -113,15 +131,22 @@ const SearchDialog = ({ iconOnly = false }) => {
       <div className="min-h-screen px-4 text-center">
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
-          onClick={() => setIsOpen(false)}
+          onClick={closeSearch}
         />
         <div className="inline-block w-full max-w-2xl mt-24 text-left align-middle transition-all transform">
-          <div className="relative bg-gray-900 rounded-xl shadow-2xl">
+        <div
+          className="relative bg-gray-900 rounded-xl shadow-2xl"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search pages"
+        >
             <div className="flex items-center px-4 border-b border-white/10">
               <Search className="w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search pages..."
+                aria-label="Search pages"
+
                 className="search-dialog-input w-full px-4 py-4 text-white bg-transparent border-0 outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -141,13 +166,13 @@ const SearchDialog = ({ iconOnly = false }) => {
                 <div className="py-2">
                   {results.map((result, index) => (
                     <button
-                      key={result.path}
+                      key={result.title}
                       className={`w-full px-4 py-3 text-left hover:bg-white/5 flex items-center justify-between ${
                         index === selectedIndex ? "bg-white/10" : ""
                       }`}
                       onClick={() => {
                         navigate(result.path);
-                        setIsOpen(false);
+                        closeSearch();
                       }}
                     >
                       <div>
