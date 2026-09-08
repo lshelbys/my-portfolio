@@ -86,9 +86,9 @@ body {
 .nav-link {
   position: relative;
   border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.55rem;
   color: #9ca3af;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   transition: color 150ms ease, background-color 150ms ease;
 }
 

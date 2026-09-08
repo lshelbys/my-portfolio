@@ -106,7 +106,7 @@ const SearchDialog = ({ iconOnly = false }) => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center justify-between gap-2 px-4 py-1.5 w-56 lg:w-72 xl:w-80 text-gray-400 hover:text-white transition-colors bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 hover:border-white/20"
+        className="flex items-center justify-between gap-2 px-4 py-1.5 w-52 xl:w-72 text-gray-400 hover:text-white transition-colors bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 hover:border-white/20"
       >
         <span className="flex items-center gap-2">
           <Search className="w-4 h-4 flex-shrink-0" />

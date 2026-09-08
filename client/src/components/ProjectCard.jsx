@@ -11,10 +11,13 @@ const ProjectCard = ({ project, featured = false }) => {
       }`}
     >
       <div
-        className={`relative overflow-hidden bg-zinc-900 ${
+        className={`relative overflow-hidden bg-zinc-950 ${
           featured ? "md:w-[48%] md:min-h-[280px]" : "h-48"
         }`}
       >
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${project.accent || "from-white/10 to-black"}`}
+        />
         {!imageFailed && project.image ? (
           <img
             src={project.image}
@@ -23,11 +26,14 @@ const ProjectCard = ({ project, featured = false }) => {
             width={featured ? 720 : 600}
             height={featured ? 400 : 300}
             onError={() => setImageFailed(true)}
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            className="relative w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full min-h-48 flex items-center justify-center bg-[radial-gradient(circle_at_top,rgba(143,243,228,0.12),transparent_55%),#111]">
-            <span className="sys-label">{project.title}</span>
+          <div className="relative w-full h-full min-h-48 flex flex-col items-start justify-end p-5">
+            <span className="sys-label mb-2">Build</span>
+            <span className="text-2xl font-semibold tracking-tight">
+              {project.title}
+            </span>
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />

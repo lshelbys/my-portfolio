@@ -11,7 +11,7 @@ const experiences = [
     type: "Self-directed",
     description: [
       "Shipped DocuCraft, a privacy-first PDF and image toolkit used in the browser with no account and no server upload.",
-      "Built smaller public tools — maps, chess, and dashboards — to practise interfaces, state, and honest constraints.",
+      "Built smaller public tools — maps, chess, and dashboards — to practice interfaces, state, and honest constraints.",
     ],
   },
   {
