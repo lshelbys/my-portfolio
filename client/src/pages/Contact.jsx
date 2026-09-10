@@ -8,7 +8,6 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  MessageCircle,
   MessageSquare,
   Phone,
   Send,
@@ -115,6 +114,14 @@ const Contact = () => {
     const snapshot = { ...formData };
     setFormData(INITIAL_FORM);
     setErrors({});
+
+    if (!API_URL) {
+      const body = `Name: ${snapshot.name}\nEmail: ${snapshot.email}\n\n${snapshot.message}`;
+      window.location.href = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(snapshot.subject)}&body=${encodeURIComponent(body)}`;
+      setSubmitStatus("mailto");
+      return;
+    }
+
     startPending(snapshot);
   };
 
@@ -150,7 +157,6 @@ const Contact = () => {
       icon: <Phone className="w-5 h-5" />,
       label: "Availability",
       value: CONTACT_INFO.phone,
-      link: "/contact",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
@@ -170,17 +176,19 @@ const Contact = () => {
       label: "GitHub",
       link: CONTACT_INFO.github,
     },
+    CONTACT_INFO.linkedin
+      ? {
+          icon: <Linkedin className="w-5 h-5" />,
+          label: "LinkedIn",
+          link: CONTACT_INFO.linkedin,
+        }
+      : null,
     {
-      icon: <Linkedin className="w-5 h-5" />,
-      label: "LinkedIn",
-      link: CONTACT_INFO.linkedin,
+      icon: <Mail className="w-5 h-5" />,
+      label: "Email",
+      link: `mailto:${CONTACT_INFO.email}`,
     },
-    {
-      icon: <MessageCircle className="w-5 h-5" />,
-      label: "Contact",
-      link: "/contact",
-    },
-  ];
+  ].filter(Boolean);
 
   const progressPct = (countdown / PENDING_DURATION) * 100;
 
@@ -198,9 +206,12 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
         >
           <MessageSquare className="w-7 h-7 sm:w-8 sm:h-8" />
-          <h2 className="text-3xl sm:text-4xl font-bold gradient-text">
-            Get in Touch
-          </h2>
+          <div>
+            <p className="sys-label mb-1">SYS / 08</p>
+            <h2 className="text-3xl sm:text-4xl font-bold gradient-text">
+              Get in Touch
+            </h2>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-[1fr,1.5fr] gap-8 sm:gap-12">
@@ -273,8 +284,8 @@ const Contact = () => {
                   <motion.a
                     key={social.label}
                     href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={social.link.startsWith("http") ? "_blank" : undefined}
+                    rel={social.link.startsWith("http") ? "noopener noreferrer" : undefined}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
@@ -401,13 +412,31 @@ const Contact = () => {
                 )}
               </div>
 
+              {submitStatus === "mailto" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-[var(--signal)]/10 border border-[var(--signal)]/20 rounded-lg text-[var(--signal)] text-sm"
+                >
+                  Your email app should open with the message filled in. If
+                  nothing happens, write directly to{" "}
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="underline hover:text-white"
+                  >
+                    {CONTACT_INFO.email}
+                  </a>
+                  .
+                </motion.div>
+              )}
+
               {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400 text-sm"
                 >
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully! I&apos;ll get back to you soon.
                 </motion.div>
               )}
 

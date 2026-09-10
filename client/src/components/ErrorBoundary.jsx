@@ -27,12 +27,20 @@ class ErrorBoundary extends Component {
             <p className="text-gray-400 mb-6">
               An unexpected error occurred. Please refresh the page.
             </p>
-            <button
-              onClick={() => this.setState({ hasError: false })}
-              className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-colors"
-            >
-              Try again
-            </button>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => this.setState({ hasError: false })}
+                className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-colors"
+              >
+                Try again
+              </button>
+              <a
+                href={`${import.meta.env.BASE_URL}`}
+                className="px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-colors"
+              >
+                Back home
+              </a>
+            </div>
           </div>
         </div>
       );

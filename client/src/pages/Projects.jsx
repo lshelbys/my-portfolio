@@ -1,90 +1,90 @@
+import ProjectCard from "@/components/ProjectCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-import { ExternalLink, Github } from "lucide-react";
-
-const projects = [
-  {
-    id: 1,
-    title: "Systems Telemetry Dashboard",
-    description:
-      "A student project for visualising signals, state, and system health through a focused web interface with clear feedback loops.",
-    image: "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/projects_img/project-4.png",
-    github: "#contact",
-    live: "#contact",
-    tags: ["React", "TypeScript", "Data Flow", "Interfaces"],
-  },
-  {
-    id: 2,
-    title: "Requirements Mapper",
-    description:
-      "A lightweight tool for capturing stakeholders, constraints, interfaces, and traceability links before implementation begins.",
-    image: "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/projects_img/project-3.png",
-    github: "#contact",
-    live: "#contact",
-    tags: ["Systems Design", "Requirements", "UX", "Documentation"],
-  },
-  {
-    id: 3,
-    title: "Network Lab Notes",
-    description:
-      "A practical learning space for exploring network concepts, repeatable commands, and observations from small controlled experiments.",
-    image: "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/projects_img/project-2.png",
-    github: "#contact",
-    live: "",
-    tags: ["Linux", "Networking", "Bash", "Monitoring"],
-  },
-  {
-    id: 4,
-    title: "Student Portfolio",
-    description:
-      "This portfolio, rebuilt from the reference repository's actual frontend structure to present a Systems Engineering learning journey.",
-    image: "https://raw.githubusercontent.com/niladri-1/Personal-portfolio/main/client/src/assets/projects_img/project-1.png",
-    github: "#contact",
-    live: "#contact",
-    tags: ["React", "Tailwind", "Responsive", "Motion"],
-  },
-];
+import { projects } from "@/config/projects";
+import { GITHUB_REPOS_URL } from "@/config/site";
+import { useMemo, useState } from "react";
 
 const Projects = () => {
+  const [activeTag, setActiveTag] = useState("All");
+
+  const tags = useMemo(() => {
+    const unique = new Set();
+    projects.forEach((project) => {
+      project.tags.forEach((tag) => unique.add(tag));
+    });
+    return ["All", ...Array.from(unique)];
+  }, []);
+
+  const featured = projects.find((project) => project.featured) ?? projects[0];
+  const rest = projects.filter((project) => project.id !== featured.id);
+  const filteredRest =
+    activeTag === "All"
+      ? rest
+      : rest.filter((project) => project.tags.includes(activeTag));
+  const showFeatured =
+    activeTag === "All" || featured.tags.includes(activeTag);
+
   return (
     <div className="min-h-screen pt-20 px-4 max-w-6xl mx-auto pb-20">
       <ScrollAnimation>
-        <h2 className="text-4xl font-bold mb-12 gradient-text">Featured Projects</h2>
+        <p className="sys-label mb-3">SYS / 06</p>
+        <h2 className="text-4xl font-bold mb-4 gradient-text">
+          Featured Projects
+        </h2>
+        <p className="text-gray-400 mb-8 max-w-2xl">
+          Real builds from GitHub — tools, maps, games, and this site.{" "}
+          <a
+            href={GITHUB_REPOS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--signal)] hover:text-white transition-colors"
+          >
+            See all repositories
+          </a>
+          .
+        </p>
       </ScrollAnimation>
 
+      <ScrollAnimation>
+        <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter projects">
+          {tags.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              role="tab"
+              aria-selected={activeTag === tag}
+              onClick={() => setActiveTag(tag)}
+              className={`px-3 py-1.5 rounded-full text-sm transition-colors border ${
+                activeTag === tag
+                  ? "bg-white text-black border-white"
+                  : "bg-white/5 text-gray-400 border-white/10 hover:text-white hover:border-white/20"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </ScrollAnimation>
+
+      {showFeatured && (
+        <ScrollAnimation>
+          <div className="mb-8">
+            <ProjectCard project={featured} featured />
+          </div>
+        </ScrollAnimation>
+      )}
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
+        {filteredRest.map((project) => (
           <ScrollAnimation key={project.id}>
-            <div className="bg-gray-800/50 rounded-lg overflow-hidden backdrop-blur-sm h-full flex flex-col">
-              <img src={project.image} alt={project.title} loading="lazy" width={600} height={300} className="w-full h-48 object-cover" />
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-400 mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-1 text-sm bg-purple-500/20 rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex space-x-4">
-                  {project.github && (
-                    <a href={project.github} className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors">
-                      <Github className="w-4 h-4" />
-                      <span>Code</span>
-                    </a>
-                  )}
-                  {project.live && (
-                    <a href={project.live} className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+            <ProjectCard project={project} />
           </ScrollAnimation>
         ))}
       </div>
+
+      {!showFeatured && filteredRest.length === 0 && (
+        <p className="text-gray-500 text-sm">No projects match that filter.</p>
+      )}
     </div>
   );
 };

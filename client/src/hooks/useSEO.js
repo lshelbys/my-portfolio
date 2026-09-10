@@ -1,53 +1,52 @@
+import { SITE_URL } from "@/config/site";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-const BASE_URL = "https://systems-engineering-portfolio.manus.space";
 
 const PAGE_META = {
   "/": {
     title: "Shelbys — Systems Engineering Portfolio",
     description:
-      "Shelbys — Systems Engineering student building thoughtful software and reliable systems from Kuwait.",
+      "Shelbys — Systems Engineering student at AUK building software, privacy-first tools, and reliable systems from Kuwait.",
   },
   "/about": {
-    title: "About - Shel­bys | Systems Engineering Student",
+    title: "About — Shelbys | Systems Engineering Student",
     description:
       "Learn about shelbys — a Systems Engineering student exploring software, infrastructure, and practical system design.",
   },
   "/projects": {
-    title: "Projects - Shel­bys | Systems Engineering Portfolio",
+    title: "Projects — Shelbys | Systems Engineering Portfolio",
     description:
-      "Explore systems projects and prototypes built by shelbys across software, automation, and connected systems.",
+      "Explore DocuCraft, inventory tools, maps, chess, and other projects built by shelbys.",
   },
   "/skills": {
-    title: "Skills - Shel­bys | Systems Engineering Skills",
+    title: "Skills — Shelbys | Systems Engineering Skills",
     description:
-      "Technical skills of shelbys — systems thinking, requirements mapping, software engineering, automation, and infrastructure fundamentals.",
+      "Technical skills of shelbys — systems thinking, software engineering, automation, and infrastructure fundamentals.",
   },
   "/experience": {
-    title: "Experience - Shel­bys | Systems Engineering",
+    title: "Experience — Shelbys | Systems Engineering",
     description:
       "Learning experience and practical build work from shelbys, a Systems Engineering student.",
   },
   "/education": {
-    title: "Education - Shel­bys | Systems Engineering",
+    title: "Education — Shelbys | Systems Engineering",
     description:
-      "Educational background of shelbys as a Systems Engineering student.",
+      "Educational background of shelbys as a Systems Engineering student at the American University of Kuwait.",
   },
   "/certificates": {
-    title: "Certificates - Shel­bys | Systems Engineering",
+    title: "Certificates — Shelbys | Systems Engineering",
     description:
       "Courses, certificates, and learning milestones from shelbys's Systems Engineering journey.",
   },
   "/contact": {
-    title: "Contact - Shel­bys | Systems Engineering Student",
+    title: "Contact — Shelbys | Systems Engineering Student",
     description:
-      "Get in touch with shelbys for project conversations, collaborations, or systems-focused build work.",
+      "Get in touch with shelbys at info@shelbys.dev for project conversations and collaborations.",
   },
 };
 
 const FALLBACK_META = {
-  title: "Shelbys - Systems Engineering Student",
+  title: "Shelbys — Systems Engineering Student",
   description:
     "Portfolio of shelbys — Systems Engineering student exploring software and reliable systems.",
 };
@@ -57,7 +56,7 @@ export const useSEO = () => {
 
   useEffect(() => {
     const meta = PAGE_META[location.pathname] ?? FALLBACK_META;
-    const url = `${BASE_URL}${location.pathname}`;
+    const url = `${SITE_URL}${location.pathname === "/" ? "/" : location.pathname}`;
 
     document.title = meta.title;
     document

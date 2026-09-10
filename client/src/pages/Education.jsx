@@ -1,16 +1,15 @@
+import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { motion } from "framer-motion";
 import {
-  GraduationCap,
-  Calendar,
-  MapPin,
-  BookOpen,
   Award,
+  BookOpen,
+  Calendar,
   FileText,
-  ExternalLink,
+  GraduationCap,
+  MapPin,
 } from "lucide-react";
-import { ScrollAnimation } from "@/components/ScrollAnimation";
-const collegeImg = "./media/auk-campus.jpeg";
-const bTechPdf = "#contact";
+
+const collegeImg = `${import.meta.env.BASE_URL}media/auk-campus.jpeg`;
 
 const educationData = [
   {
@@ -21,7 +20,6 @@ const educationData = [
     degree: "Systems Engineering Student",
     grade: "In progress",
     image: collegeImg,
-    resultUrl: bTechPdf,
     coursework: [
       "Systems Modelling",
       "Requirements",
@@ -32,7 +30,7 @@ const educationData = [
       "Data",
     ],
     description:
-      "At the American University of Kuwait, I am building a foundation in systems thinking, software engineering, analysis, and practical problem solving. I use hands-on projects to connect classroom concepts with things that can be tested.",
+      "At the American University of Kuwait, I am building a foundation in systems thinking, software engineering, analysis, and practical problem solving. Hands-on projects are how I connect classroom concepts with things that can be tested.",
   },
 ];
 
@@ -47,15 +45,18 @@ const Education = () => {
           transition={{ duration: 0.8 }}
         >
           <GraduationCap className="w-8 h-8" />
-          <h2 className="text-4xl font-bold gradient-text">Education</h2>
+          <div>
+            <p className="sys-label mb-1">SYS / 03</p>
+            <h2 className="text-4xl font-bold gradient-text">Education</h2>
+          </div>
         </motion.div>
       </ScrollAnimation>
 
       <div className="space-y-12">
         {educationData.map((edu) => (
           <ScrollAnimation key={edu.id}>
-            <div className="relative bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm hover:bg-gray-800/70 transition-all">
-              <div className="absolute top-0 right-0 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-bl-xl flex items-center gap-2">
+            <div className="relative bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm hover:bg-gray-800/70 transition-all border border-white/5">
+              <div className="absolute top-0 right-0 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-bl-xl flex items-center gap-2 z-10">
                 <Calendar className="w-4 h-4 text-gray-300" />
                 <span className="text-gray-300">{edu.duration}</span>
               </div>
@@ -64,7 +65,7 @@ const Education = () => {
                 <div className="relative h-96 md:h-full">
                   <img
                     src={edu.image}
-                    alt={edu.school}
+                    alt={`Campus of ${edu.school}`}
                     loading="lazy"
                     width={350}
                     height={400}
@@ -96,46 +97,17 @@ const Education = () => {
                     <p className="text-sm leading-relaxed">{edu.description}</p>
                   </div>
 
-                  {edu.coursework && (
-                    <div className="mb-6">
-                      <div className="flex flex-wrap gap-2">
-                        {edu.coursework.map((course) => (
-                          <span
-                            key={course}
-                            className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                          >
-                            {course}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {edu.subjects && (
-                    <div className="mb-6">
-                      <div className="flex flex-wrap gap-2">
-                        {edu.subjects.map((subject) => (
-                          <span
-                            key={subject}
-                            className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                          >
-                            {subject}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <motion.a
-                    href={edu.resultUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-sm font-medium"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    View Result
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.a>
+                  <p className="sys-label mb-3">Course focus</p>
+                  <div className="flex flex-wrap gap-2">
+                    {edu.coursework.map((course) => (
+                      <span
+                        key={course}
+                        className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

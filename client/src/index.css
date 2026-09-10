@@ -12,6 +12,7 @@
 :root {
   color-scheme: dark;
   --radius: 0.5rem;
+  --signal: #8ff3e4;
 }
 
 * {
@@ -85,9 +86,9 @@ body {
 .nav-link {
   position: relative;
   border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.55rem;
   color: #9ca3af;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   transition: color 150ms ease, background-color 150ms ease;
 }
 
@@ -138,6 +139,30 @@ body {
   pointer-events: none;
   opacity: 0.22;
   mix-blend-mode: screen;
+}
+
+.sys-label {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  color: var(--signal);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 1rem;
 }
 
 .search-dialog-input:focus,
