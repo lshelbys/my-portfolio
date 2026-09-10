@@ -45,6 +45,9 @@ const ProjectCard = ({ project, featured = false }) => {
       </div>
 
       <div className={`p-6 flex flex-col flex-grow ${featured ? "md:w-[52%]" : ""}`}>
+        {project.category && (
+          <p className="sys-label mb-2">{project.category}</p>
+        )}
         <h3 className={`font-semibold mb-2 ${featured ? "text-2xl" : "text-xl"}`}>
           {project.title}
         </h3>

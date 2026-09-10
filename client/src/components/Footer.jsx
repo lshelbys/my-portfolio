@@ -1,6 +1,7 @@
 import { CONTACT_INFO } from "@/config/contact";
-import { GITHUB_URL } from "@/config/site";
-import { Code2, Github, Mail } from "lucide-react";
+import { DOCUCRAFT_URL, GITHUB_URL } from "@/config/site";
+import { useKuwaitTime } from "@/hooks/useKuwaitTime";
+import { Code2, ExternalLink, Github, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const pageLinks = [
@@ -20,6 +21,7 @@ const column3 = pageLinks.slice(6, 8);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const kuwaitTime = useKuwaitTime();
 
   return (
     <footer className="relative mt-24">
@@ -35,6 +37,9 @@ const Footer = () => {
             <p className="text-sm text-gray-400">
               Systems Engineering student based in Kuwait. Building software,
               tools, and prototypes from first principles.
+            </p>
+            <p className="sys-label">
+              {kuwaitTime ? `Kuwait / ${kuwaitTime}` : "Kuwait / UTC+3"}
             </p>
           </div>
 
@@ -121,6 +126,15 @@ const Footer = () => {
                 <Mail className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
+            <a
+              href={DOCUCRAFT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Featured: DocuCraft
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
           </div>
         </div>
 

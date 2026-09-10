@@ -114,16 +114,39 @@ const skills = [
   },
 ];
 
+const featuredStack = [
+  { name: "Python", icon: <PythonLogo /> },
+  { name: "JavaScript", icon: <JavaScriptLogo /> },
+  { name: "React", icon: <ReactLogo /> },
+  { name: "Git", icon: <GitLogo /> },
+  { name: "Linux", icon: <LinuxLogo /> },
+  { name: "AWS", icon: <AWSLogo /> },
+];
+
 const Skills = () => {
   return (
     <div className="min-h-screen pt-20 px-4 max-w-6xl mx-auto pb-20">
       <ScrollAnimation>
         <p className="sys-label mb-3">SYS / 05</p>
         <h2 className="text-4xl font-bold mb-4 gradient-text">Technical Skills</h2>
-        <p className="text-gray-400 mb-12 max-w-2xl">
+        <p className="text-gray-400 mb-8 max-w-2xl">
           A practical overview of the systems, software, infrastructure, and
           communication skills I am building through study and projects.
         </p>
+      </ScrollAnimation>
+
+      <ScrollAnimation>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-12">
+          {featuredStack.map((skill) => (
+            <div
+              key={skill.name}
+              className="bg-white/5 border border-white/10 rounded-xl px-3 py-4 flex flex-col items-center gap-2 hover:border-white/20 hover:bg-white/10 transition-colors"
+            >
+              <div className="text-gray-300">{skill.icon}</div>
+              <span className="text-sm text-gray-300">{skill.name}</span>
+            </div>
+          ))}
+        </div>
       </ScrollAnimation>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

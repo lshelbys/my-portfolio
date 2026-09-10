@@ -1,28 +1,18 @@
 import ProjectCard from "@/components/ProjectCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
-import { projects } from "@/config/projects";
+import { PROJECT_CATEGORIES, projects } from "@/config/projects";
 import { GITHUB_REPOS_URL } from "@/config/site";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 const Projects = () => {
   const [activeTag, setActiveTag] = useState("All");
 
-  const tags = useMemo(() => {
-    const unique = new Set();
-    projects.forEach((project) => {
-      project.tags.forEach((tag) => unique.add(tag));
-    });
-    return ["All", ...Array.from(unique)];
-  }, []);
-
   const featured = projects.find((project) => project.featured) ?? projects[0];
   const rest = projects.filter((project) => project.id !== featured.id);
-  const filteredRest =
-    activeTag === "All"
-      ? rest
-      : rest.filter((project) => project.tags.includes(activeTag));
-  const showFeatured =
-    activeTag === "All" || featured.tags.includes(activeTag);
+  const matches = (project) =>
+    activeTag === "All" || project.category === activeTag;
+  const filteredRest = rest.filter(matches);
+  const showFeatured = matches(featured);
 
   return (
     <div className="min-h-screen pt-20 px-4 max-w-6xl mx-auto pb-20">
@@ -46,8 +36,12 @@ const Projects = () => {
       </ScrollAnimation>
 
       <ScrollAnimation>
-        <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter projects">
-          {tags.map((tag) => (
+        <div
+          className="flex flex-wrap gap-2 mb-10"
+          role="tablist"
+          aria-label="Filter projects"
+        >
+          {PROJECT_CATEGORIES.map((tag) => (
             <button
               key={tag}
               type="button"

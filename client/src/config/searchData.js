@@ -77,7 +77,19 @@ export const searchData = [
     title: "DocuCraft",
     description: "Privacy-first PDF and image toolkit that runs in the browser",
     path: "/projects",
-    keywords: ["docucraft", "pdf", "merge", "compress", "privacy"],
+    keywords: ["docucraft", "pdf", "merge", "compress", "privacy", "tools"],
+  },
+  {
+    title: "SandboxEarth",
+    description: "Themed interactive map with GTA and RDR2 aesthetics",
+    path: "/projects",
+    keywords: ["sandboxearth", "maps", "gta", "rdr2"],
+  },
+  {
+    title: "Chess Companion",
+    description: "Offline chess app with bots and four game modes",
+    path: "/projects",
+    keywords: ["chess", "games", "bots"],
   },
   {
     title: "Certificates",

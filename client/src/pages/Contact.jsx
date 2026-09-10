@@ -1,8 +1,12 @@
 import { CONTACT_INFO, OFFICE_HOURS } from "@/config/contact";
+import { useCopyText } from "@/hooks/useCopyText";
+import { useKuwaitTime } from "@/hooks/useKuwaitTime";
 import { validateContactForm } from "@/utils/helpers";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Check,
   Clock,
+  Copy,
   Edit2,
   Github,
   Linkedin,
@@ -21,6 +25,8 @@ const INITIAL_FORM = { name: "", email: "", subject: "", message: "" };
 const PENDING_DURATION = 30;
 
 const Contact = () => {
+  const { copied, copy } = useCopyText();
+  const kuwaitTime = useKuwaitTime();
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -166,7 +172,9 @@ const Contact = () => {
     {
       icon: <Clock className="w-5 h-5" />,
       label: "Time Zone",
-      value: CONTACT_INFO.timezone,
+      value: kuwaitTime
+        ? `${CONTACT_INFO.timezone} · ${kuwaitTime}`
+        : CONTACT_INFO.timezone,
     },
   ];
 
@@ -235,7 +243,40 @@ const Contact = () => {
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                     className="group"
                   >
-                    {info.link ? (
+                    {info.label === "Email" ? (
+                      <div className="flex items-center space-x-3 p-2 sm:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                        <a
+                          href={info.link}
+                          className="flex items-center space-x-3 flex-1 min-w-0"
+                        >
+                          <div className="text-gray-400 group-hover:text-white transition-colors">
+                            {info.icon}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs sm:text-sm text-gray-400">
+                              {info.label}
+                            </p>
+                            <p className="text-sm sm:text-base text-white truncate">
+                              {info.value}
+                            </p>
+                          </div>
+                        </a>
+                        <button
+                          type="button"
+                          onClick={() => copy(CONTACT_INFO.email)}
+                          className="shrink-0 p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                          aria-label={
+                            copied ? "Email copied" : "Copy email address"
+                          }
+                        >
+                          {copied ? (
+                            <Check className="w-4 h-4 text-[var(--signal)]" />
+                          ) : (
+                            <Copy className="w-4 h-4" />
+                          )}
+                        </button>
+                      </div>
+                    ) : info.link ? (
                       <a
                         href={info.link}
                         className="flex items-center space-x-3 p-2 sm:p-3 rounded-lg hover:bg-white/5 transition-colors"

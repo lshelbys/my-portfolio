@@ -1,7 +1,11 @@
+export const PROJECT_CATEGORIES = ["All", "Tools", "Maps", "Games", "Web"];
+
 export const projects = [
   {
     id: 1,
     featured: true,
+    selected: true,
+    category: "Tools",
     title: "DocuCraft",
     description:
       "A free, privacy-first PDF and image toolkit that runs in the browser. Merge, split, compress, convert, watermark, and redact files with no sign-up and no upload to a server.",
@@ -14,6 +18,8 @@ export const projects = [
   },
   {
     id: 2,
+    selected: true,
+    category: "Tools",
     title: "Almail Group Inventory",
     description:
       "A centralized inventory portal for construction projects, products, and teams — with a dedicated login flow and a practical stock-tracking interface.",
@@ -26,6 +32,8 @@ export const projects = [
   },
   {
     id: 3,
+    selected: true,
+    category: "Maps",
     title: "SandboxEarth",
     description:
       "A Google-Maps-style interactive map restyled with GTA V, San Andreas, and Red Dead Redemption 2 themes. Pure HTML, CSS, and JS — pan, zoom, search, and themed routes with no build step.",
@@ -37,6 +45,7 @@ export const projects = [
   },
   {
     id: 4,
+    category: "Games",
     title: "Chess Companion",
     description:
       "A self-contained chess app with full rules, three local bots, four game modes, clocks, and saved games. One HTML file, works offline, nothing leaves the device.",
@@ -48,6 +57,7 @@ export const projects = [
   },
   {
     id: 5,
+    category: "Maps",
     title: "TerraIntel",
     description:
       "A dark geospatial monitor for scanning world-level signals. Built as a compact HTML dashboard with D3 and TopoJSON for map-driven observation.",
@@ -59,6 +69,7 @@ export const projects = [
   },
   {
     id: 6,
+    category: "Web",
     title: "This Portfolio",
     description:
       "The site you are on now — a React portfolio for a Systems Engineering student, with search, dark technical styling, and a GitHub Pages deployment.",
@@ -69,3 +80,5 @@ export const projects = [
     accent: "from-teal-300/20 via-zinc-900 to-black",
   },
 ];
+
+export const selectedProjects = projects.filter((project) => project.selected);

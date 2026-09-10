@@ -1,38 +1,47 @@
+import { ChevronDown, Code2, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { Code2, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchDialog from "./SearchDialog";
 
-const navLinks = [
+const primaryLinks = [
   { path: "/", label: "Home" },
   { path: "/about", label: "About" },
-  { path: "/education", label: "Education" },
-  { path: "/experience", label: "Experience" },
-  { path: "/skills", label: "Skills" },
   { path: "/projects", label: "Projects" },
-  { path: "/certificates", label: "Certificates" },
   { path: "/contact", label: "Contact" },
 ];
 
+const moreLinks = [
+  { path: "/education", label: "Education" },
+  { path: "/experience", label: "Experience" },
+  { path: "/skills", label: "Skills" },
+  { path: "/certificates", label: "Certificates" },
+];
+
+const allLinks = [...primaryLinks, ...moreLinks];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const location = useLocation();
   const menuRef = useRef(null);
+  const moreActive = moreLinks.some((link) => link.path === location.pathname);
 
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen && !isMoreOpen) return;
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsMenuOpen(false);
+        setIsMoreOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isMoreOpen]);
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsMoreOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -65,12 +74,12 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="hidden lg:flex flex-1 justify-center">
+            <div className="hidden md:flex flex-1 justify-center">
               <SearchDialog />
             </div>
 
-            <div className="hidden lg:flex flex-shrink-0 items-center space-x-1 ml-auto">
-              {navLinks.map((link) => (
+            <div className="hidden md:flex flex-shrink-0 items-center space-x-1 ml-auto">
+              {primaryLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -86,9 +95,48 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              <div className="relative">
+                <button
+                  type="button"
+                  className={`nav-link flex items-center gap-1 ${
+                    moreActive || isMoreOpen
+                      ? "bg-white/15 backdrop-blur-sm text-white"
+                      : ""
+                  }`}
+                  aria-expanded={isMoreOpen}
+                  aria-haspopup="true"
+                  onClick={() => setIsMoreOpen((prev) => !prev)}
+                >
+                  More
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform ${isMoreOpen ? "rotate-180" : ""}`}
+                    aria-hidden="true"
+                  />
+                </button>
+                {isMoreOpen && (
+                  <div className="absolute right-0 mt-2 w-44 rounded-xl border border-white/10 bg-black/90 backdrop-blur-xl p-1 shadow-2xl">
+                    {moreLinks.map((link) => (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                          location.pathname === link.path
+                            ? "bg-white/10 text-white"
+                            : "text-gray-400 hover:text-white hover:bg-white/5"
+                        }`}
+                        aria-current={
+                          location.pathname === link.path ? "page" : undefined
+                        }
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex lg:hidden items-center ml-auto">
+            <div className="flex md:hidden items-center ml-auto">
               <SearchDialog iconOnly />
               <button
                 type="button"
@@ -109,13 +157,13 @@ const Navbar = () => {
 
         {isMenuOpen && (
           <motion.div
-            className="lg:hidden absolute top-full left-0 right-0 bg-black/80 backdrop-blur-xl border-b border-white/10"
+            className="md:hidden absolute top-full left-0 right-0 bg-black/80 backdrop-blur-xl border-b border-white/10"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
           >
             <div className="px-4 pt-2 pb-3 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
-              {navLinks.map((link) => (
+              {allLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}

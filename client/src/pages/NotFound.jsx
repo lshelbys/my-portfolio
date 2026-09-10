@@ -58,13 +58,21 @@ const NotFound = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-colors group"
-            >
-              <Home className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>Back to Home</span>
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-colors group"
+              >
+                <Home className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span>Back to Home</span>
+              </Link>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-colors"
+              >
+                View Projects
+              </Link>
+            </div>
           </motion.div>
         </ScrollAnimation>
 

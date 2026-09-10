@@ -1,9 +1,11 @@
 import {
+  BackToTop,
   Background3D,
   ErrorBoundary,
   Footer,
   Loading,
   Navbar,
+  ScrollToTop,
 } from "@/components/index";
 import { useSEO } from "@/hooks/useSEO";
 import { Suspense, lazy } from "react";
@@ -31,6 +33,7 @@ function AppLayout() {
       <ErrorBoundary fallback={null}>
         <Background3D />
       </ErrorBoundary>
+      <ScrollToTop />
       <Navbar />
       <main id="main-content" className="flex-grow">
         <ErrorBoundary>
@@ -51,6 +54,7 @@ function AppLayout() {
         </ErrorBoundary>
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }
